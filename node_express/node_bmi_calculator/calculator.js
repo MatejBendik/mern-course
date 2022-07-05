@@ -30,7 +30,7 @@ app.get('/bmiCalculator', (req, res) => {           // callback funkcia hovori c
 
 app.post("/bmiCalculator",function (req, res){       
     
-    var weight = parseFloat(req.body.weight);    
+    var weight = parseFloat(req.body.weight);   
     var height = parseFloat(req.body.height);
 
     var result = weight/(height*height);
