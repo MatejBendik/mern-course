@@ -1,3 +1,5 @@
+.DS_Store
 node_express/intro_to_node/node_modules
 node_express/my_express_server/node_modules
 node_express/node_bmi_calculator/node_modules
+node_express/todolist/node_modules
