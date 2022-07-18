@@ -1,9 +1,10 @@
 import React from "react";
+import ToDoItem from "./ToDoItem";
 
 function App() {
 
   const [inputText, setInputText] = React.useState(""); 
-  const [items, setItems] = React.useState(["Item"]);
+  const [items, setItems] = React.useState([]);
 
   function handleChange(event){
     const newValue = event.target.value
@@ -19,28 +20,38 @@ function App() {
     setInputText("");
   }
 
+  function deleteItem(id){
+    
+    // setItems will update the list of items 
+    setItems((prevItems) => {                           // here we are going through the array of prevItems, look through each item and get the index of each item
+      return prevItems.filter((item, index) => {
+          return index !== id;                          // and return an output of the final array that is going to return all the items were index !== id 
+        }
+      )     
+    });
+  }
+
   return (
     <div className="container">
       <div className="heading">
         <h1>To-Do List</h1>
       </div>
       <div className="form">
-        <input 
-          type="text"
-          name="todoItem" 
-          value={inputText}
-          onChange={handleChange}
-        />
+        <input onChange={handleChange} type="text" value={inputText} />
         <button onClick={addItem}>
           <span>Add</span>
         </button>
       </div>
       <div>
         <ul>
-            {items.map( (todoItem) =>{
-              return <li> {todoItem} </li>
-            }
-            )}
+          {items.map( (todoItem, index) => (
+            <ToDoItem 
+              key={index}
+              id={index}
+              todoItem={todoItem} 
+              onChecked={deleteItem}
+            />
+          ))}
         </ul>
       </div>
     </div>
